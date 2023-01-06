@@ -36,12 +36,12 @@ const handleSubmit = async (e) => {
     };
 
     try {
-    const response = await fetch(`http://143.244.187.233:3001/rename_one/${newName}/${directory}`, options);
-    console.log({ response })
-    $('.success-modal').removeClass('hidden');
-    setTimeout(() => {
-      window.location.reload();
-    }, 1500);
+      const response = await fetch(`http://143.244.187.233:3001/rename/${newName}/${directory}`, options);
+      console.log({ response })
+      $('.success-modal').removeClass('hidden');
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 1500);
     } catch (err) {
       alert(`there was an error: ${err}, ${err.message}`);
     }
@@ -59,12 +59,12 @@ const handleSubmit = async (e) => {
     };
 
     try {
-      const response = await fetch(`http://143.244.187.233:3001/rename_multiple/${newName}/${directory}`, options);
+      const response = await fetch(`http://143.244.187.233:3001/rename/${newName}/${directory}`, options);
       console.log({ response });
       $('.success-modal').removeClass('hidden');
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500);
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 1500);
     } catch (err) {
       alert(`there was an error: ${err}, ${err.message}`);
     }
@@ -82,12 +82,12 @@ const handleSubmit = async (e) => {
     };
 
     try {
-      const response = await fetch(`http://143.244.187.233:3001/rename_one/${newName}/${directory}`, options);
+      const response = await fetch(`http://143.244.187.233:3001/rename/${newName}/${directory}`, options);
       console.log({ response });
       $('.success-modal').removeClass('hidden');
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500)
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 1500);
     } catch (err) {
       alert(`there was an error: ${err}, ${err.message}`);
     }
@@ -105,12 +105,12 @@ const handleSubmit = async (e) => {
     };
 
     try {
-      const response = await fetch(`http://143.244.187.233:3001/rename_multiple/${newName}/${directory}`, options);
+      const response = await fetch(`http://143.244.187.233:3001/rename/${newName}/${directory}`, options);
       console.log({ response });
       $('.success-modal-wrapper').removeClass('hidden');
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500);
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 1500);
     } catch (err) {
       alert(`there was an error: ${err}, ${err.message}`);
     }

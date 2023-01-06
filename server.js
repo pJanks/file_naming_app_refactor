@@ -4,51 +4,36 @@ const express = require('express');
 const multer = require('multer');
 
 const app = express();
-const port = 3001;
+app.use(express.static('public'));
+
 const server = http.createServer(app);
-server.listen(port, () => console.log(`server running on port ${port} . . .`));
+server.listen(3001, () => console.log(`server running on port 3001. . .`));
 
 const listener = require('socket.io')(server);
 listener.on('connection', (socket) => {
-  let killServer;
-  killServer = false;
-  console.log('connection established . . .');
-
+  let killServer = false;
   if (!fs.existsSync('./uploads')) fs.mkdirSync('./uploads');
-
   socket.on('disconnect', () => {
     killServer = true;
     console.log('connection lost . . .');
-    // const validateKillingServer = () =>  killServer ? server.close() : console.log('reconnected');
-    // setTimeout(() => validateKillingServer(), 15000);
   });
 });
 
-app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true }));
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
-
-app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
-
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    if (!fs.existsSync(`./uploads/${req.params.directory}`)) {
-      fs.mkdirSync(`./uploads/${req.params.directory}`);
-    }
-    cb(null, `./uploads/${req.params.directory}`);
+    const dir = req.params.directory;
+    if (!fs.existsSync(`./uploads/${dir}`)) fs.mkdirSync(`./uploads/${dir}`);
+    cb(null, `./uploads/${dir}`);
   },
   filename: (req, file, cb) => {
+    // ! need to add logic to remove chars from filename here thru req params
     cb(null, `${req.params.new_name}_${file.originalname}`);
   }
 });
 
 const upload = multer({ storage });
 
-app.post('/rename_one/:new_name/:directory', upload.any('files'), (req, res) => {
+app.post('/rename/:new_name/:directory', upload.any('files'), (req, res) => {
   try {
     res.sendStatus(200);
   } catch(err) {
