@@ -20,33 +20,37 @@
       </header>
       <main class="content-container">
         <form class="file-dropper-form" enctype="multipart/form-data">
-          <label
-            class="file-dropper-label"
-            for="file-dropper"
-            tabindex=0
-          >
+          <label class="file-dropper-label" for="file-dropper" tabindex="0">
             Drag and drop files or click to browse . . .
           </label>
           <input
             class="file-dropper hidden"
-            type="file"
             name="files"
             id="file-dropper"
+            type="file"
             multiple
           />
           <input
+            class="start-input user-input"
+            placeholder="Start postion for character removal"
+            value="0"
+          />
+          <input
+            class="end-input user-input"
+            placeholder="End postion for character removal"
+            value="0"
+          />
+          <input
             class="new-name-input user-input"
-            type="text"
+            placeholder="Enter terms to prepend to filename"
             required
-            placeholder="Enter terms to prepend to filename . . ."
           />
           <input
             class="directory-input user-input"
-            type="text"
+            placeholder="Enter a directory to store the files in"
             required
-            placeholder="Enter a directory to store the files in . . ."
           />
-          <button class="submit-button">Submit</button>
+          <input class="submit-button" type="submit" value="Submit" />
         </form>
       </main>
     </div>

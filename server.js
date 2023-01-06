@@ -11,11 +11,13 @@ server.listen(3001, () => console.log(`server running on port 3001. . .`));
 
 const listener = require('socket.io')(server);
 listener.on('connection', (socket) => {
-  let killServer = false;
+  // let killServer = false;
   if (!fs.existsSync('./uploads')) fs.mkdirSync('./uploads');
   socket.on('disconnect', () => {
-    killServer = true;
+    // killServer = true;
     console.log('connection lost . . .');
+    // const validateKillingServer = () =>  killServer ? server.close() : console.log('reconnected');
+    // setTimeout(() => validateKillingServer(), 15000);
   });
 });
 
@@ -27,13 +29,16 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     // ! need to add logic to remove chars from filename here thru req params
+    // const start = Number(req.params.chars_to_remove_start);
+    // const end = Number(req.params.chars_to_remove_end);
+    const newName = req.params.new_name; // substring or splic/slice it out w/ start/end
     cb(null, `${req.params.new_name}_${file.originalname}`);
   }
 });
 
 const upload = multer({ storage });
 
-app.post('/rename/:new_name/:directory', upload.any('files'), (req, res) => {
+app.post('/rename/:new_name/:directory/', upload.any('files'), (req, res) => {
   try {
     res.sendStatus(200);
   } catch(err) {
