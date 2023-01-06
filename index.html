@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./public/styles/reset.css">
+    <link rel="stylesheet" href="./public/styles/styles.css">
+    <title>file_naming_app</title>
+  </head>
+  <body>
+    <div class="app-wrapper">
+      <div class="success-modal-wrapper hidden">
+        <div class="success-modal">
+          <span class="success">SUCCESS !!</span>
+        </div>
+      </div>
+      <header class="main-header">
+        <h1 class="main-heading">file_naming_app</h1>
+      </header>
+      <main class="content-container">
+        <form class="file-dropper-form" enctype="multipart/form-data">
+          <label
+            class="file-dropper-label"
+            for="file-dropper"
+            tabindex=0
+          >
+            Drag and drop files or click to browse . . .
+          </label>
+          <input
+            class="file-dropper hidden"
+            type="file"
+            name="files"
+            id="file-dropper"
+            multiple
+          />
+          <input
+            class="new-name-input user-input"
+            type="text"
+            required
+            placeholder="Enter terms to prepend to filename . . ."
+          />
+          <input
+            class="directory-input user-input"
+            type="text"
+            required
+            placeholder="Enter a directory to store the files in . . ."
+          />
+          <button class="submit-button">Submit</button>
+        </form>
+      </main>
+    </div>
+  </body>
+  <!-- <script src="/socket.io/socket.io.js"></script> -->
+  <script src="./public/scripts/jquery.js"></script>
+  <script src="./public/scripts/scripts.js"></script>
+  <!-- <script>
+    const socket = io();
+  </script> -->
+</html>
