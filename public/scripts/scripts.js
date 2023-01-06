@@ -36,7 +36,7 @@ const handleSubmit = async (e) => {
     };
 
     try {
-    const response = await fetch(`http://127.0.0.1:3001/rename_one/${newName}/${directory}`, options);
+    const response = await fetch(`http://143.244.187.233:3001/rename_one/${newName}/${directory}`, options);
     console.log({ response })
     $('.success-modal').removeClass('hidden');
     setTimeout(() => {
@@ -59,7 +59,7 @@ const handleSubmit = async (e) => {
     };
 
     try {
-      const response = await fetch(`http://127.0.0.1:3001/rename_multiple/${newName}/${directory}`, options);
+      const response = await fetch(`http://143.244.187.233:3001/rename_multiple/${newName}/${directory}`, options);
       console.log({ response });
       $('.success-modal').removeClass('hidden');
       setTimeout(() => {
@@ -82,7 +82,7 @@ const handleSubmit = async (e) => {
     };
 
     try {
-      const response = await fetch(`http://127.0.0.1:3001/rename_one/${newName}/${directory}`, options);
+      const response = await fetch(`http://143.244.187.233:3001/rename_one/${newName}/${directory}`, options);
       console.log({ response });
       $('.success-modal').removeClass('hidden');
       setTimeout(() => {
@@ -105,7 +105,7 @@ const handleSubmit = async (e) => {
     };
 
     try {
-      const response = await fetch(`http://127.0.0.1:3001/rename_multiple/${newName}/${directory}`, options);
+      const response = await fetch(`http://143.244.187.233:3001/rename_multiple/${newName}/${directory}`, options);
       console.log({ response });
       $('.success-modal-wrapper').removeClass('hidden');
       setTimeout(() => {
