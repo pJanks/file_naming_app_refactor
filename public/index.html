@@ -31,16 +31,6 @@
             multiple
           />
           <input
-            class="start-input user-input"
-            placeholder="Start postion for character removal"
-            value="0"
-          />
-          <input
-            class="end-input user-input"
-            placeholder="End postion for character removal"
-            value="0"
-          />
-          <input
             class="new-name-input user-input"
             placeholder="Enter terms to prepend to filename"
             required
@@ -48,6 +38,20 @@
           <input
             class="directory-input user-input"
             placeholder="Enter a directory to store the files in"
+            required
+          />
+          <input
+            class="start-input user-input"
+            placeholder="Start postion for character removal or 0"
+            value="0"
+            type="number"
+            required
+          />
+          <input
+            class="end-input user-input"
+            placeholder="End postion for character removal or 0"
+            value="0"
+            type="number"
             required
           />
           <input class="submit-button" type="submit" value="Submit" />
