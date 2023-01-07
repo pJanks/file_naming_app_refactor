@@ -16,7 +16,7 @@ listener.on('connection', (socket) => {
   socket.on('disconnect', () => {
     killServer = true;
     const validateKillingServer = () =>  killServer ? server.close() : null;
-    setTimeout(() => validateKillingServer(), 60000);
+    // setTimeout(() => validateKillingServer(), 60000);
   });
 });
 
@@ -28,15 +28,21 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     let shortenedOrOriginalFilename;
+    const extension = file.originalname.split('.').at(-1);
     const start = Number(req.params.startPositionToRemove);
     const end = Number(req.params.endPositionToRemove);
-    if (start === -1 && end === -1) {
+    if (start < 0 || end < 0 || end < start || end > file.originalname.length) {
       shortenedOrOriginalFilename = file.originalname
     } else {
       shortenedOrOriginalFilename = file.originalname.slice(0, start) + file.originalname.slice(end + 1);
     }
     const newName = req.params.new_name;
-    cb(null, `${newName}_${shortenedOrOriginalFilename}`);
+    const extensionToCompare = shortenedOrOriginalFilename.split('.').at(-1);
+    if (extensionToCompare !== extension) {
+      cb(null, `${newName}_${shortenedOrOriginalFilename}.${extension}`);
+    } else {
+      cb(null, `${newName}_${shortenedOrOriginalFilename}`);
+    }
   }
 });
 

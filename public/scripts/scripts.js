@@ -32,7 +32,7 @@ const handleSubmit = async (e) => {
     const endPositionToRemove = Number($('.end-input').val()) - 1;
 
     if (startPositionToRemove < -1 || endPositionToRemove < -1) {
-      alert('enter valid starting and ending positions of characters to remove or 0');
+      alert('Enter valid starting and ending positions of characters to remove, or 0 for each to keep the original name intact . . .');
       return;
     }
     

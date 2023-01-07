@@ -1,11 +1,52 @@
 # File Naming App
 
-This app can be used to select one or more files from a file explorer or drag and drop one or multiple files, and prepend them with a descriptor. It will also create a folder to store the groups in. **This utility will NOT edit the original files**. I advise checking to make sure the prepended files are not corrupted before erasing original files. After filling out the form and selecting the files, simply click Submit. Go to the uploads directory created at the root of this project and verify that all of your files are there and that they are not corrupted. Node.js must be installed to run this app.
+Node.js must be installed to run this app.
 
-## Instructions for Starting App
+This app can be used to select one or more files from a file explorer, or drag and drop one or multiple files, and prepend them with a descriptor. It will also create a folder to store the groups in. **This utility will NOT edit the original files**. I recommend checking to make sure the new files are not corrupted before erasing original files.
 
-  - clone down this repository
+After filling out the form and selecting the files you want to group, simply click `Submit`. Navigate to the `uploads/` directory created in the root directory of this project and verify that all of your files are there and that they are not corrupted.
+
+# *Updated Jan 2023*
+
+This utility now offers an option to enter a starting position and ending position of characters to remove from the original filename. It is important to note that these are **NOT ZERO-BASED INDEXES**; The first character in the filename is located at position 1. The inputs default values are 0, which will leave the string as is.
+
+## ***Examples of Behavior:***
+
+Given `robot_yellow.png` as the original filename and starting/ending position inputs in the format (start_position, end_position), the following demonstrate how the filename will be changed. The ultimate result of the below inputs would be files found in the following place: `/uploads/[user_inputted_directory]/[user_input_to_prepend]_` followed immediately by the return values below.
+
+The default values will return the original name:
+
+  - (0, 0) returns `robot_yellow.png`
+
+Valid syntax returns a new name with the characters removed between the start_position and end_position (inclusively):
+
+  - (1, 1) returns `obot_yellow.png`
+  - (3, 5) returns `ro_yellow.png`
+
+0 is not valid in starting or ending positions. This will return the original name:
+
+  - (5, 0) returns `robot_yellow.png`
+  - (0, 2) returns `robot_yellow.png`
+
+If the ending position is less than the starting position This will return the original name:
+
+  - (5, 3) returns `robot_yellow.png`
+
+If the ending position extends into the file extension the file extension will be appended to the name ***which may have unexpected results:***
+
+  - (6, 14) returns `robotng.png`
+
+If all characters are removed only the file extension will be returned:
+
+  - (1, 16) returns `.png`
+
+*Negative positions are not valid. You will be alerted in the browser.*
+
+## Getting Started
+
+  - clone this repository
   - `cd` into project directory
+  - run `npm install`
   - run `node server.js`
   - go to `127.0.0.1:3001` in your web browser
 
